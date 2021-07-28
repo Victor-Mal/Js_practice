@@ -88,7 +88,7 @@ products.push ( {
 
  {  name: "banana",
     price: 20,
-    number: 5,
+    number: 4,
     presence: true
 },
 
@@ -104,17 +104,20 @@ console.log(products);
 //Потом по количеству на складе больше 5 шт. (filter().filter())
 
 console.log(products.filter((value) => {
-    if (products.presence > 0) {
-        return true;
-    }
-    return value === true;
+    return value.presence === true;   
 }));
 
+console.log(products.filter((value) => {
+    return value.number >= 5;   
+}));
 
 //15. Создать массив Корзина.
 //Спрашивать у пользователя ид (индекс продукта) через prompt который он хочет положить в корзину.
 //_Клонировать_ в корзину обьект продукта по индексу выбранному пользователем.
 //
+
+
+
 //16. Создать _шаблон_ обьекта Пользователь.
 //Принимать параметры - username, age, isMale, password.
 //17. В цикле (for или map) создать 5 пользователей (new User) и поместить их в массив users. Имена, возрасты, пол, и пароль пусть зависят от индекса ("username1", "username2" ...).
