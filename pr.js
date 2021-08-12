@@ -35,7 +35,7 @@ console.log(copy);
 
 //7. У новой копии массива удалить половину элементов (array.length/2 - 1)
 
-copy.splice(copy.length/2, );
+copy.splice(copy.length/2);
 console.log(copy);
 
 //8. Создать пустой массив, 8 ячеек
@@ -73,26 +73,29 @@ console.log(pow);
 
 //12. Перевести массив в строку, с разделителем "&&" (join)
 
-console.log(pow.join("&&"));
+console.log(pow.join(" && "));
 
 //13. Создать массив продуктов, 3-5 элементов. Каждый продукт имеет свойства -
 // наименование, цена, осталось ли на складе, колво на складе.
 
 const products = [];
 products.push ( {
+    prodId: '1',
     name: "apple",
     price: 10,
     number: 100,
     presence: true
 },
 
- {  name: "banana",
+ {  prodId: '2',
+    name: "banana",
     price: 20,
     number: 4,
     presence: true
 },
 
- {  name: "orange",
+ {  prodId: '3',
+    name: "orange",
     price: 15,
     number: 0,
     presence: false
@@ -111,15 +114,58 @@ console.log(products.filter((value) => {
     return value.number >= 5;   
 }));
 
+///
+
+console.log(products.filter((value) => {
+    return value.presence === true}).filter((value) => {
+    return value.number >= 5;   
+}));
+
+
 //15. Создать массив Корзина.
 //Спрашивать у пользователя ид (индекс продукта) через prompt который он хочет положить в корзину.
 //_Клонировать_ в корзину обьект продукта по индексу выбранному пользователем.
-//
 
-const basket = []
+const basket = [];
+let prodIdUser = prompt('Product ID');
+products.filter((value) => {
+    if (value.prodId === prodIdUser) {
+        basket.push ({...value});
+    }  
+});
+//check that this is not a link
+basket[0].name = "apple777"
+console.log(basket);
+console.log(products);
+
 
 //16. Создать _шаблон_ обьекта Пользователь.
 //Принимать параметры - username, age, isMale, password.
-//17. В цикле (for или map) создать 5 пользователей (new User) и поместить их в массив users. Имена, возрасты, пол, и пароль пусть зависят от индекса ("username1", "username2" ...).
+
+const User = function (username, age, isMale, password) {
+    this.username  = username; 
+    this.age  = age;
+    this.isMale  = isMale;
+    this.password  = password;
+}
+const user = new User ('Mike', 25, true, 123456789);
+console.log(user);
+
+
+//17. В цикле (for или map) создать 5 пользователей (new User) и поместить их 
+//в массив users. Имена, возрасты, пол, и пароль пусть зависят 
+//от индекса ("username1", "username2" ...).
 //
-//
+const users = [];
+for (let i = 1; i < 6; i++) {
+    if (i % 2 === 0) {
+       gender = true;
+    }
+    else {
+        gender = false;
+    };
+    const user = new User('username' + i, 18 + i, gender, 123456 * i);
+    users.push (user);
+}
+console.log(users);
+
